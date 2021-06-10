@@ -1,10 +1,24 @@
 #!/bin/bash
 #Jetson stuff
 
+while getopts u:f: flag
+do
+    case "${flag}" in
+        u) USER=${OPTARG};;
+        f) FOLDER=${OPTARG};;
+    esac
+done
+
+
+echo "Username: $USER";
+echo "Folder: $FOLDER";
+
+#exit
+
 #edit sudoers file with : visudo
 #    myuser ALL=(ALL) NOPASSWD:ALL
 
-USER=user
+#USER=user
 
 sudo bash -c 'echo "$USER ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/99_sudo_include_file'    
 
@@ -33,11 +47,11 @@ fi
 	echo 'deb https://repo.download.nvidia.com/jetson/t194 r32.5 main ' 
  }	| sudo tee /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
 
-
-
 sudo apt update
 sudo apt dist-upgrade
 sudo apt autoremove
+
+#need to add a check to see if nomachine is already installed
 
 #download nomachine armv8 
 cd home/$USER/Downloads
@@ -49,7 +63,9 @@ sudo dpkg -i nomachine.deb
 #Simply mounting (or symlinking) the /var/lib/openalpr folder to your external drive would be the simplest
 
 #call the nvme script here
+sudo ./nvme.sh -f $FOLDER
 
+#need to add a check to see if openalpr is already installed
 curl -L https://deb.openalpr.com/openalpr.gpg.key | sudo apt-key add -
 echo 'deb https://deb.openalpr.com/jetson40/ jetson40 main' | sudo tee /etc/apt/sources.list.d/openalpr.list
 

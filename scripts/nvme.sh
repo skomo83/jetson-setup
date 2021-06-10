@@ -1,7 +1,16 @@
 #!/bin/bash
 DEV=/dev/nvme0n1
 PART=/dev/nvme0n1p1
-FOLDER=/var/lib/openalpr
+#FOLDER=/var/lib/openalpr
+
+while getopts f: FLAG
+do
+    case "${FLAG}" in
+        f) FOLDER=${OPTARG};;
+    esac
+done
+
+#need to check if the arg is parsed
 
 echo "Do we have $DEV connected ?"
 if [ -e $DEV ]; then
