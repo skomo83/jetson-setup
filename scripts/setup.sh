@@ -3,6 +3,7 @@
 RED="\e[31m"
 GREEN="\e[32m"
 PURPLE="\e[35m"
+LIGHTGREY="\e[37m"
 END="\e[0m"
 
 
@@ -109,4 +110,5 @@ sudo apt autoremove
 ./programs.sh
 
 echo -e "$GREEN Finished Configuration $END"
-echo -e "$PURPLE Please perform a restart ?$END"
+echo -e "$LIGHTGREY Please perform a restart ?$END"
+
