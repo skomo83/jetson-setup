@@ -96,7 +96,7 @@ if [ -b $DEV ]; then
 		echo '#2TB' >> /etc/fstab
 		echo "$PART    $FOLDER    ext4    defaults    0    2" >> /etc/fstab
 	else
-		echo -e "$RED #2TB is already in fstab $END"
+		echo -e "$GREEN #2TB is already in fstab $END"
 	fi
 else
 	echo -e "$RED $DEV is NOT connected ! $END"
