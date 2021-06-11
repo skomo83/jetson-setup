@@ -45,8 +45,8 @@ if [ ! -b $DEV ]; then
 	exit 
 fi
 
-if [ ! -b $PART ]; then 
-	echo "Partition $PART does not exist"
+if [ -z $PART ]; then 
+	echo "Partition value is blank"
 	exit 
 fi
 

@@ -30,8 +30,8 @@ if [ ! -b $DEV ]; then
 	exit 
 fi
 
-if [ ! -b $PART ]; then 
-	echo "Partition $PART does not exist"
+if [ -z $PART ]; then 
+	echo "Partition value is blank"
 	exit 
 fi
 
@@ -46,7 +46,7 @@ if [ -b $DEV ]; then
 	echo "$DEV is connected"
 	
     echo "Do we have $PART created ?"
-    if [ ! -b $PART ]; then
+    if [ ! -e $PART ]; then
 		echo "Creating partition"
 		sudo parted $DEV mklabel gpt 
 		sudo parted $DEV mkpart primary ext4 0 100%
