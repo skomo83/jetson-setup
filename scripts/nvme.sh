@@ -3,21 +3,50 @@ DEV=/dev/nvme0n1
 PART=/dev/nvme0n1p1
 #FOLDER=/var/lib/openalpr
 
-while getopts f: FLAG
+((!$#)) && echo "No arguments supplied!" && echo "Must run with -f /folder/location -d /dev/device/ -p /dev/partition/ " && exit
+
+while getopts u:f:d:p:h flag
 do
-    case "${FLAG}" in
+    case "${flag}" in
         f) FOLDER=${OPTARG};;
+		d) DEV=${OPTARG};;
+		p) PART=${OPTARG};;
+		h) echo "Must run with -f /folder/location -d /dev/device/ -p /dev/partition/ "; exit
     esac
 done
+
+if [ -z $FOLDER ]; then 
+	echo "Folder is blank"
+	exit 
+fi
+
+if [ ! -d $FOLDER ]; then 
+	echo "Folder $FOLDER does not exist"
+	exit 
+fi
+
+if [ ! -b $DEV ]; then 
+	echo "Device $DEV does not exist"
+	exit 
+fi
+
+if [ ! -b $PART ]; then 
+	echo "Partition $PART does not exist"
+	exit 
+fi
+
+echo "Folder: $FOLDER";
+echo "Device: $DEV";
+echo "Partition: $PART";
 
 #need to check if the arg is parsed
 
 echo "Do we have $DEV connected ?"
-if [ -e $DEV ]; then
+if [ -b $DEV ]; then
 	echo "$DEV is connected"
 	
     echo "Do we have $PART created ?"
-    if [ ! -e $PART ]; then
+    if [ ! -b $PART ]; then
 		echo "Creating partition"
 		sudo parted $DEV mklabel gpt 
 		sudo parted $DEV mkpart primary ext4 0 100%
@@ -35,7 +64,7 @@ if [ -e $DEV ]; then
 	fi
 	
     echo "Lets try mount $FOLDER to $PART"
-	if ([ -e $PART ] && [ -d $FOLDER ]); then
+	if ([ -b $PART ] && [ -d $FOLDER ]); then
 		echo "Mounting $FOLDER to $PART"
 		sudo mount $PART $FOLDER
     else
