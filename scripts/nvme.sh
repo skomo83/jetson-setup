@@ -9,7 +9,7 @@ END="\e[0m"
 #PART=/dev/nvme0n1p1
 #FOLDER=/var/lib/openalpr
 echo ""
-echo -e "$PURPLE Setup NVME drive and mount point?$END"
+echo -e "$PURPLE Setup NVME drive and mount point $END"
 
 HELPMSG="
  Must run with -f /folder/location -d /dev/device/ -p /dev/partition/
@@ -48,16 +48,17 @@ if [ -z $PART ]; then
 fi
 
 
-VALS="Using the following values
-Folder: $FOLDER
-Device: $DEV
-Partition: $PART
+VALS="
+ Using the following values
+ Folder: $FOLDER
+ Device: $DEV
+ Partition: $PART
 "
 echo -e "$GREEN $VALS $END"
 
 #need to check if the arg is parsed
 
-echo echo -e "$PURPLE Do we have $DEV connected ?$END"
+echo -e "$PURPLE Do we have $DEV connected ?$END"
 if [ -b $DEV ]; then
 	echo -e "$GREEN $DEV is connected $END"
 	
@@ -68,7 +69,7 @@ if [ -b $DEV ]; then
 		sudo parted $DEV mkpart primary ext4 0 100%
 		sudo mkfs.ext4 $PART
 	else
-		echo -e "$RED $PART already exists$END"
+		echo -e "$GREEN $PART already exists$END"
 	fi
 	
     echo -e "$PURPLE Do we have $FOLDER created ?$END"

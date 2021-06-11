@@ -110,5 +110,5 @@ sudo apt autoremove
 ./programs.sh
 
 echo -e "$GREEN Finished Configuration $END"
-echo -e "$LIGHTGREY Please perform a restart ?$END"
+echo -e "$LIGHTGREY Please perform a restart ! $END"
 
