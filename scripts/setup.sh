@@ -88,5 +88,6 @@ sudo apt autoremove
 #call the nvme script here
 sudo ./nvme.sh -f $FOLDER -d $DEV -p $PART
 
+
 #install external programs
 sudo ./programs.sh

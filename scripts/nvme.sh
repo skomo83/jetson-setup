@@ -64,7 +64,7 @@ if [ -b $DEV ]; then
 	fi
 	
     echo "Lets try mount $FOLDER to $PART"
-	if ([ -b $PART ] && [ -d $FOLDER ]); then
+	if ([ -e $PART ] && [ -d $FOLDER ]); then
 		echo "Mounting $FOLDER to $PART"
 		sudo mount $PART $FOLDER
     else
