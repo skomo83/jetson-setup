@@ -3,7 +3,7 @@
 #go to the dir you want your scripts and copy and paste the below
 #wget https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/init.sh
 
-FILES=("setup.sh" "nvme.sh" "programs.sh")
+FILES=("setup.sh" "nvme.sh" "programs.sh" "nvidia.sh")
 LOCATION="https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/"
 
 for file in ${FILES[@]};

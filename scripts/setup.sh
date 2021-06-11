@@ -68,8 +68,6 @@ sudo bash -c 'echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/99_sudo_
 sudo visudo -cf /etc/sudoers.d/99_sudo_include_file
 
 #now can use sudo
-    
-sudo apt install nano haveged curl apt-transport-https gparted
 
 #sudo nano /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
 #edit section below so you can update to 32.5.1 jetpack
@@ -77,19 +75,11 @@ sudo apt install nano haveged curl apt-transport-https gparted
 #deb https://repo.download.nvidia.com/jetson/common r32.5 main
 #deb https://repo.download.nvidia.com/jetson/t194 r32.5 main
 
-NVFILE=/etc/apt/sources.list.d/nvidia-l4t-apt-source.list
-
-if [ -e $NVFILE ]; then
-	echo "Backing up $NVFILE"
-	sudo mv $NVFILE $NVFILE.save
-fi
-
-{
-	echo 'deb https://repo.download.nvidia.com/jetson/common r32.5 main ' 
-	echo 'deb https://repo.download.nvidia.com/jetson/t194 r32.5 main ' 
- }	| sudo tee $NVFILE
+sudo ./nvidia.sh
 
 sudo apt update
+sudo apt install nano haveged curl apt-transport-https gparted
+
 sudo apt dist-upgrade
 sudo apt autoremove
 
