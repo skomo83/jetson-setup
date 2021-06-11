@@ -4,15 +4,17 @@
 USERNAME=$USER
 DEV=/dev/nvme0n1
 PART=/dev/nvme0n1p1
+FOLDER=/var/lib/openalpr
 
 HELPMSG="
-Must run with '-f /folder/location'
-default username is current user. overide username with '-u username' 
-default device is '/dev/nvme0n1' - overide device with '-d /dev/device/' 
-default partition is '/dev/nvme0n1p1' - overide partition with '-p /dev/partition/'
+default folder is $FOLDER. Overide folder with '-f /folder/location'
+current username is $USERNAME. Overide username with '-u username' 
+default device is $DEV. Overide device with '-d /dev/device/' 
+default partition is $PART. Overide partition with '-p /dev/partition/'
+run with -h to display with message
 "
 
-((!$#)) && echo "No arguments supplied!" && echo "$HELPMSG" && exit
+((!$#)) && echo "No arguments supplied. Using all defaults" && echo "$HELPMSG"
 
 while getopts u:f:d:p:h flag
 do
