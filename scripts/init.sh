@@ -8,6 +8,7 @@ LOCATION = "https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/
 
 for file in ${FILES[@]};
 do
+    [ -f $file ] && rm $file
     wget $LOCATION$file
     chmod +x $file
 done
