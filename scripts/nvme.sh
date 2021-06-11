@@ -8,9 +8,11 @@ END="\e[0m"
 #DEV=/dev/nvme0n1
 #PART=/dev/nvme0n1p1
 #FOLDER=/var/lib/openalpr
+echo ""
+echo -e "$PURPLE Setup NVME drive and mount point?$END"
 
 HELPMSG="
-Must run with -f /folder/location -d /dev/device/ -p /dev/partition/
+ Must run with -f /folder/location -d /dev/device/ -p /dev/partition/
 "
 
 ((!$#)) && echo -e "$RED No arguments supplied! $END" && echo -e "$RED $HELPMSG $END" && exit
@@ -74,7 +76,7 @@ if [ -b $DEV ]; then
 		echo -e "$GREEN Creating $FOLDER $END"
 		sudo mkdir $FOLDER;
 	else
-		echo  -e "$RED$FOLDER already exists $END"
+		echo  -e "$GREEN $FOLDER already exists $END"
 	fi
 	
     echo -e "$PURPLE Lets try mount $FOLDER to $PART $END"
@@ -98,4 +100,4 @@ if [ -b $DEV ]; then
 else
 	echo -e "$RED $DEV is NOT connected ! $END"
 fi
-echo -e "$PURPLE Finished $END"
+

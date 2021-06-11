@@ -6,6 +6,7 @@ END="\e[0m"
 
 NVFILE=/etc/apt/sources.list.d/nvidia-l4t-apt-source.list
 JETPACK=r32.5
+echo ""
 echo -e "$GREEN Modifiying the nvidia repo to the Jetpack v $JETPACK $END"
 
 if [ -e $NVFILE ]; then

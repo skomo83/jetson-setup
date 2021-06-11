@@ -12,11 +12,11 @@ PART=/dev/nvme0n1p1
 FOLDER=/var/lib/openalpr
 
 HELPMSG="
-default folder is $FOLDER. Overide folder with '-f /folder/location'
-current username is $USERNAME. Overide username with '-u username' 
-default device is $DEV. Overide device with '-d /dev/device/' 
-default partition is $PART. Overide partition with '-p /dev/partition/'
-run with -h to display with message
+ default folder is $FOLDER. Overide folder with '-f /folder/location'
+ current username is $USERNAME. Overide username with '-u username' 
+ default device is $DEV. Overide device with '-d /dev/device/' 
+ default partition is $PART. Overide partition with '-p /dev/partition/'
+ run with -h to display with message
 "
 
 ((!$#)) && echo -e "$RED No arguments supplied. Using all defaults $END" && echo -e "$RED $HELPMSG $END"
@@ -57,17 +57,23 @@ if [ -z $PART ]; then
 	exit 
 fi
 
-DEFVALS="Using the following values
-Username: $USERNAME
-Folder: $FOLDER
-Device: $DEV
-Partition: $PART
+echo ""
+echo -e "$GREEN Starting the configuration $END"
+
+DEFVALS="
+ Using the following values
+ Username: $USERNAME
+ Folder: $FOLDER
+ Device: $DEV
+ Partition: $PART
 "
 echo -e "$GREEN $DEFVALS $END"
 
 #edit sudoers file with : visudo
 #    myuser ALL=(ALL) NOPASSWD:ALL
 
+
+echo -e "$PURPLE ADD $USERNAME to SUDOERS $END"
 sudo bash -c 'echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/99_sudo_include_file'    
 
 #Check that your sudoers include file passed the visudo syntax checks:
@@ -83,6 +89,8 @@ sudo visudo -cf /etc/sudoers.d/99_sudo_include_file
 
 ./nvidia.sh
 
+
+echo -e "$PURPLE RUN APT UPDATE AND INSTALL EXTRA PROGRAMS $END"
 sudo apt update
 sudo apt install nano haveged curl apt-transport-https gparted
 
@@ -92,8 +100,13 @@ sudo apt autoremove
 
 
 #call the nvme script here
+
 ./nvme.sh -f $FOLDER -d $DEV -p $PART
 
 
 #install external programs
+
 ./programs.sh
+
+echo -e "$GREEN Finished Configuration $END"
+echo -e "$PURPLE Please perform a restart ?$END"
