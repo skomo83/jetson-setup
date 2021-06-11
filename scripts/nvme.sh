@@ -1,9 +1,19 @@
 #!/bin/bash
-DEV=/dev/nvme0n1
-PART=/dev/nvme0n1p1
+RED="\e[31m"
+GREEN="\e[32m"
+PURPLE="\e[35m"
+END="\e[0m"
+
+#we can uncomment these out when using the file directly but we are getting called from setup.sh with default values
+#DEV=/dev/nvme0n1
+#PART=/dev/nvme0n1p1
 #FOLDER=/var/lib/openalpr
 
-((!$#)) && echo "No arguments supplied!" && echo "Must run with -f /folder/location -d /dev/device/ -p /dev/partition/ " && exit
+HELPMSG="
+Must run with -f /folder/location -d /dev/device/ -p /dev/partition/
+"
+
+((!$#)) && echo -e "$RED No arguments supplied! $END" && echo -e "$RED $HELPMSG $END" && exit
 
 while getopts u:f:d:p:h flag
 do
@@ -11,77 +21,81 @@ do
         f) FOLDER=${OPTARG};;
 		d) DEV=${OPTARG};;
 		p) PART=${OPTARG};;
-		h) echo "Must run with -f /folder/location -d /dev/device/ -p /dev/partition/ "; exit
+		h) echo -e "$RED $HELPMSG $END"; exit
     esac
 done
 
 if [ -z $FOLDER ]; then 
-	echo "Folder is blank"
+    echo -e "$RED Folder is blank $END"
 	exit 
 fi
 
 if [ ! -d $FOLDER ]; then 
-	echo "Folder $FOLDER does not exist"
+	echo -e "$RED $FOLDER does not exist $END"
 	exit 
 fi
 
 if [ ! -b $DEV ]; then 
-	echo "Device $DEV does not exist"
+    echo -e "$RED Device $DEV does not exist $END"
 	exit 
 fi
 
 if [ -z $PART ]; then 
-	echo "Partition value is blank"
+    echo -e "$RED Partition value is blank $END"
 	exit 
 fi
 
-echo "Folder: $FOLDER";
-echo "Device: $DEV";
-echo "Partition: $PART";
+
+VALS="Using the following values
+Folder: $FOLDER
+Device: $DEV
+Partition: $PART
+"
+echo -e "$GREEN $VALS $END"
 
 #need to check if the arg is parsed
 
-echo "Do we have $DEV connected ?"
+echo echo -e "$PURPLE Do we have $DEV connected ?$END"
 if [ -b $DEV ]; then
-	echo "$DEV is connected"
+	echo -e "$GREEN $DEV is connected $END"
 	
-    echo "Do we have $PART created ?"
+    echo -e "$PURPLE Do we have $PART created ?$END"
     if [ ! -e $PART ]; then
-		echo "Creating partition"
+		echo -e "$GREEN Creating partition $END"
 		sudo parted $DEV mklabel gpt 
 		sudo parted $DEV mkpart primary ext4 0 100%
 		sudo mkfs.ext4 $PART
 	else
-		echo "$PART already exists"
+		echo -e "$RED $PART already exists$END"
 	fi
 	
-    echo "Do we have $FOLDER created ?"
+    echo -e "$PURPLE Do we have $FOLDER created ?$END"
 	if [ ! -d $FOLDER ]; then
-		echo "Creating $FOLDER"
+		echo -e "$GREEN Creating $FOLDER $END"
 		sudo mkdir $FOLDER;
 	else
-		echo "$FOLDER already exists"
+		echo  -e "$RED$FOLDER already exists $END"
 	fi
 	
-    echo "Lets try mount $FOLDER to $PART"
+    echo -e "$PURPLE Lets try mount $FOLDER to $PART $END"
 	if ([ -e $PART ] && [ -d $FOLDER ]); then
-		echo "Mounting $FOLDER to $PART"
+		echo -e "$GREEN Mounting $FOLDER to $PART $END"
 		sudo mount $PART $FOLDER
     else
-        echo "Problem occured with either $FOLDER or $PART"
+        echo -e "$RED Problem occured with either $FOLDER or $PART $END"
 	fi
 	
-    echo "Adding the auto mount of $FOLDER to $PART in FSTAB"
+    echo -e "$PURPLE Adding the auto mount of $FOLDER to $PART in FSTAB $END"
 	if ! grep -q '#2TB' /etc/fstab; then
-		echo "Making backup of fstab"
+		echo -e "$GREEN Making backup of fstab $END"
 		sudo cp /etc/fstab /etc/fstab.backup
-		echo "Inserting 2TB drive into fstab"
+		echo -e "$GREEN Inserting 2TB drive into fstab $END"
 		echo '#2TB' >> /etc/fstab
 		echo "$PART    $FOLDER    ext4    defaults    0    2" >> /etc/fstab
 	else
-		echo "#2TB is already in fstab"
+		echo -e "$RED #2TB is already in fstab $END"
 	fi
 else
-	echo "$DEV is NOT connected !"
+	echo -e "$RED $DEV is NOT connected ! $END"
 fi
-echo "Finished"
+echo -e "$PURPLE Finished $END"

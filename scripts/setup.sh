@@ -1,5 +1,10 @@
 #!/bin/bash
 #Jetson stuff
+RED="\e[31m"
+GREEN="\e[32m"
+PURPLE="\e[35m"
+END="\e[0m"
+
 
 USERNAME=$USER
 DEV=/dev/nvme0n1
@@ -14,7 +19,7 @@ default partition is $PART. Overide partition with '-p /dev/partition/'
 run with -h to display with message
 "
 
-((!$#)) && echo "No arguments supplied. Using all defaults" && echo "$HELPMSG"
+((!$#)) && echo -e "$RED No arguments supplied. Using all defaults $END" && echo -e "$RED $HELPMSG $END"
 
 while getopts u:f:d:p:h flag
 do
@@ -28,41 +33,40 @@ do
 done
 
 if [ -z $USERNAME ]; then 
-	echo "Username is blank"
+    echo -e "$RED Username is blank $END"
 	exit 
 fi
 
 if [ -z $FOLDER ]; then 
-	echo "Folder is blank"
+    echo -e "$RED Folder is blank $END"
 	exit 
 fi
 
 if [ ! -d $FOLDER ]; then 
-	echo "Folder $FOLDER does not exist"
+	echo -e "$RED $FOLDER does not exist $END"
 	exit 
 fi
 
 if [ ! -b $DEV ]; then 
-	echo "Device $DEV does not exist"
+    echo -e "$RED Device $DEV does not exist $END"
 	exit 
 fi
 
 if [ -z $PART ]; then 
-	echo "Partition value is blank"
+    echo -e "$RED Partition value is blank $END"
 	exit 
 fi
 
-echo "Using the following values"
-echo "Username: $USERNAME";
-echo "Folder: $FOLDER";
-echo "Device: $DEV";
-echo "Partition: $PART";
-
+DEFVALS="Using the following values
+Username: $USERNAME
+Folder: $FOLDER
+Device: $DEV
+Partition: $PART
+"
+echo -e "$GREEN $DEFVALS $END"
 
 #edit sudoers file with : visudo
 #    myuser ALL=(ALL) NOPASSWD:ALL
-
-#USER=user
 
 sudo bash -c 'echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/99_sudo_include_file'    
 
@@ -85,7 +89,7 @@ sudo apt install nano haveged curl apt-transport-https gparted
 sudo apt dist-upgrade
 sudo apt autoremove
 
-#Simply mounting (or symlinking) the /var/lib/openalpr folder to your external drive would be the simplest
+
 
 #call the nvme script here
 ./nvme.sh -f $FOLDER -d $DEV -p $PART

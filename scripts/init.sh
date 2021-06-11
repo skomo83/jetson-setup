@@ -1,4 +1,8 @@
 #!/bin/bash
+RED="\e[31m"
+GREEN="\e[32m"
+PURPLE="\e[35m"
+END="\e[0m"
 
 #go to the dir you want your scripts and copy and paste the below
 #wget https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/init.sh
@@ -10,7 +14,8 @@ LOCATION="https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/"
 
 for file in ${FILES[@]};
 do
-    [ -f $file ] && rm $file && echo "$file deleted"
+    [ -f $file ] && rm $file && echo -e "$RED $file deleted $END"
+    echo -e "$GREEN Downloading $file $END"
     wget $LOCATION$file
     chmod +x $file
 done
