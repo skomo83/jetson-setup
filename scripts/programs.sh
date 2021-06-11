@@ -11,7 +11,7 @@ if [ $? -ne 0 ]
 fi
 
 #need to add a check to see if openalpr is already installed
-PACKAGE = openalpr
+PACKAGE=openalpr
 dpkg -s $PACKAGE &> /dev/null  
 if [ $? -ne 0 ]
     then
