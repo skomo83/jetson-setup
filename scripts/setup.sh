@@ -77,7 +77,7 @@ sudo visudo -cf /etc/sudoers.d/99_sudo_include_file
 #deb https://repo.download.nvidia.com/jetson/common r32.5 main
 #deb https://repo.download.nvidia.com/jetson/t194 r32.5 main
 
-sudo ./nvidia.sh
+./nvidia.sh
 
 sudo apt update
 sudo apt install nano haveged curl apt-transport-https gparted
@@ -88,8 +88,8 @@ sudo apt autoremove
 #Simply mounting (or symlinking) the /var/lib/openalpr folder to your external drive would be the simplest
 
 #call the nvme script here
-sudo ./nvme.sh -f $FOLDER -d $DEV -p $PART
+./nvme.sh -f $FOLDER -d $DEV -p $PART
 
 
 #install external programs
-sudo ./programs.sh
+./programs.sh
