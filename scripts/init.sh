@@ -14,7 +14,7 @@ LOCATION="https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/"
 
 for file in ${FILES[@]};
 do
-    [ -f $file ] && rm $file && echo -e "$RED $file deleted $END"
+    [ -f $file ] && rm $file && echo -e "$RED Deleted $file $END"
     echo -e "$GREEN Downloading $file $END"
     wget $LOCATION$file
     chmod +x $file
