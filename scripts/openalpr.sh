@@ -16,7 +16,6 @@ if [ $? -ne 0 ]
         echo -e "$RED $PACKAGE is not installed $END"  
         curl -L https://deb.openalpr.com/openalpr.gpg.key | sudo apt-key add -
         echo 'deb https://deb.openalpr.com/jetson40/ jetson40 main' | sudo tee /etc/apt/sources.list.d/openalpr.list
-        sudo apt update
         bash <(curl -s https://deb.openalpr.com/install)  # select "install_agent"
 
     else
