@@ -7,6 +7,9 @@ END="\e[0m"
 #go to the dir you want your scripts and copy and paste the below
 #wget https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/init.sh
 
+#flush the dns to ensure we get the latest file changes
+sudo systemd-resolve --flush-caches
+
 #yes its ugly manually putting in the files but it works
 
 FILES=("init.sh" "setup.sh" "nvme.sh" "programs.sh" "nvidia.sh" "nomachine.sh" "openalpr.sh")
