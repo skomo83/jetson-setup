@@ -12,7 +12,7 @@ sudo systemd-resolve --flush-caches
 
 #yes its ugly manually putting in the files but it works
 
-FILES=("init.sh" "setup.sh" "nvme.sh" "programs.sh" "nvidia.sh" "nomachine.sh" "openalpr.sh")
+FILES=("init.sh" "setup.sh" "sudoadd.sh" "nvme.sh" "programs.sh" "nvidia.sh" "nomachine.sh" "openalpr.sh")
 LOCATION="https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/"
 
 for file in ${FILES[@]};
