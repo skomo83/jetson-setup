@@ -36,7 +36,7 @@ if [ -f "$SUDOFILE" ] && grep -q "$SUDOSTRING" "$SUDOFILE" ;
 then
     echo -e "$GREEN $SUDOSTRING is already in $SUDOFILE $END"
 else
-    sudo bash -c "echo '$SUDOSTRING >> $SUDOFILE'"
+    sudo bash -c "echo '$SUDOSTRING' >> '$SUDOFILE'"
     sudo visudo -cf $SUDOFILE
 fi
 
