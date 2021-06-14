@@ -43,11 +43,6 @@ if [ -z $FOLDER ]; then
 	exit 
 fi
 
-if [ ! -d $FOLDER ]; then 
-	echo -e "$RED $FOLDER does not exist $END"
-	exit 
-fi
-
 if [ ! -b $DEV ]; then 
     echo -e "$RED Device $DEV does not exist $END"
 	exit 
