@@ -9,6 +9,7 @@ USERNAME=$USER
 HELPMSG="
  current username is $USERNAME. Overide username with '-u username' 
  run with -h to display this message
+"
 
 ((!$#)) && echo -e "$RED No arguments supplied. Using all defaults $END" && echo -e "$RED $HELPMSG $END"
 
