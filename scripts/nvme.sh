@@ -93,8 +93,12 @@ if [ -b $DEV ]; then
 		echo -e "$GREEN Making backup of fstab $END"
 		sudo cp /etc/fstab /etc/fstab.backup
 		echo -e "$GREEN Inserting 2TB drive into fstab $END"
-		sudo echo '#2TB' >> /etc/fstab
-		sudo echo "$PART    $FOLDER    ext4    defaults    0    2" >> /etc/fstab
+		
+		{
+		echo "#2TB" 
+		echo "$PART    $FOLDER    ext4    defaults    0    2" 
+ 		}	| sudo tee /etc/fstab
+
 	else
 		echo -e "$GREEN #2TB is already in fstab $END"
 	fi
