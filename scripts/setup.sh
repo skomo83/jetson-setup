@@ -67,7 +67,7 @@ echo -e "$GREEN $DEFVALS $END"
 
 #edit sudoers file with : visudo
 #    myuser ALL=(ALL) NOPASSWD:ALL
-./sudo.sh 
+./sudoadd.sh 
 
 #install the new nvidia repo
 ./nvidia.sh
