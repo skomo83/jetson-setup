@@ -102,7 +102,7 @@ if [ -b $DEV ]; then
  		}	| sudo tee /etc/fstab
 
 	else
-		echo -e "$GREEN #2TB is already in fstab $END"
+		echo -e "$GREEN $FSTABSTRING is already in fstab $END"
 	fi
 else
 	echo -e "$RED $DEV is NOT connected ! $END"
