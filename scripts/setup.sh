@@ -67,20 +67,12 @@ echo -e "$GREEN $DEFVALS $END"
 
 #edit sudoers file with : visudo
 #    myuser ALL=(ALL) NOPASSWD:ALL
-
 ./sudo.sh 
 
-#now can use sudo
-
-#sudo nano /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
-#edit section below so you can update to 32.5.1 jetpack
-#t194 for Jetson AGX Xavier series or Jetson Xavier NX
-#deb https://repo.download.nvidia.com/jetson/common r32.5 main
-#deb https://repo.download.nvidia.com/jetson/t194 r32.5 main
-
+#install the new nvidia repo
 ./nvidia.sh
 
-
+#run apt update and install some general programs
 echo -e "$PURPLE RUN APT UPDATE AND INSTALL EXTRA PROGRAMS $END"
 sudo apt update
 sudo apt install nano haveged curl apt-transport-https gparted
@@ -89,16 +81,13 @@ sudo apt dist-upgrade
 sudo apt autoremove
 
 
-
 #call the nvme script here
-
 ./nvme.sh -f $FOLDER -d $DEV -p $PART
 
 
 #install external programs
-
 ./programs.sh
 
+#finished
 echo -e "$GREEN Finished Configuration $END"
 echo -e "$LIGHTGREY Please perform a restart ! $END"
-
