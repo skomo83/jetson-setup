@@ -73,7 +73,7 @@ echo -e "$GREEN $DEFVALS $END"
 #edit sudoers file with : visudo
 #    myuser ALL=(ALL) NOPASSWD:ALL
 
-./sudo.sh
+./sudo.sh 
 
 #now can use sudo
 
