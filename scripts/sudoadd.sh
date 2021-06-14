@@ -27,13 +27,14 @@ if [ -z $USERNAME ]; then
 fi
 
 echo -e "$PURPLE ADD $USERNAME to SUDOERS $END"
+SUDOFILE=/etc/sudoers.d/99_sudo_include_file
 
 SUDOSTRING="$USERNAME ALL=(ALL) NOPASSWD:ALL"
-if ! grep -q "$SUDOSTRING" /etc/sudoers.d/99_sudo_include_file; then
-    echo "$RED not in the file $END"
-    echo "$SUDOSTRING"
+if ! grep -q "$SUDOSTRING" $SUDOFILE; then
+    sudo bash -c "echo $SUDOSTRING >> $SUDOFILE"
+    sudo visudo -cf $SUDOFILE
 else
-    echo "$GREEN Already in the file $END"
+    echo -e "$GREEN $SUDOSTRING is already in $SUDOFILE $END"
 fi
 
 #sudo bash -c "echo $SUDOSTRING >> /etc/sudoers.d/99_sudo_include_file"   
