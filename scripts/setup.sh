@@ -82,6 +82,7 @@ sudo apt autoremove -y
 
 
 #call the nvme script here
+echo -e "$GREEN ./nvme.sh -f $FOLDER -d $DEV -p $PART $END"
 ./nvme.sh -f $FOLDER -d $DEV -p $PART
 
 
