@@ -41,6 +41,7 @@ else
 fi
 
 #sudo bash -c "echo $SUDOSTRING >> /etc/sudoers.d/99_sudo_include_file"   
+#sudo bash -c 'echo "$USERNAME ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/99_sudo_include_file'    
 
 #Check that your sudoers include file passed the visudo syntax checks:
 #sudo visudo -cf /etc/sudoers.d/99_sudo_include_file
