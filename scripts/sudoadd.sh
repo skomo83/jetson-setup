@@ -37,7 +37,16 @@ then
     echo -e "$GREEN $SUDOSTRING is already in $SUDOFILE $END"
 else
     sudo bash -c "echo '$SUDOSTRING' >> '$SUDOFILE'"
+    
+    if [ $? -eq 0 ]; 
+    then  
+        echo -e "$GREEN $SUDOSTRING added successfully to $SUDOFILE $END"
+    else
+        echo -e "$RED $SUDOSTRING FAILED IN ADDING TO $SUDOFILE $END"    
+    fi
+
     sudo visudo -cf $SUDOFILE
+
 fi
 
 #sudo bash -c "echo $SUDOSTRING >> /etc/sudoers.d/99_sudo_include_file"   
