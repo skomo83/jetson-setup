@@ -54,19 +54,22 @@ echo -e "$GREEN $VALS $END"
 #need to check if the arg is parsed
 
 echo -e "$PURPLE Do we have $DEV connected ?$END"
+#is the device there ?
 if [ -b $DEV ]; then
 	echo -e "$GREEN $DEV is connected $END"
 	
+	#is the partition created ?
     echo -e "$PURPLE Do we have $PART created ?$END"
     if [ ! -e $PART ]; then
 		echo -e "$GREEN Creating partition $END"
 		sudo parted $DEV mklabel gpt 
-		sudo parted $DEV mkpart primary ext4 0 100%
+		sudo parted $DEV mkpart primary ext4 0% 100%
 		sudo mkfs.ext4 $PART
 	else
 		echo -e "$GREEN $PART already exists$END"
 	fi
 	
+	#have we created the folder ?
     echo -e "$PURPLE Do we have $FOLDER created ?$END"
 	if [ ! -d $FOLDER ]; then
 		echo -e "$GREEN Creating $FOLDER $END"
@@ -75,6 +78,7 @@ if [ -b $DEV ]; then
 		echo  -e "$GREEN $FOLDER already exists $END"
 	fi
 	
+	#lets mount the partition to the folder
     echo -e "$PURPLE Lets try mount $FOLDER to $PART $END"
 	if ([ -e $PART ] && [ -d $FOLDER ]); then
 		echo -e "$GREEN Mounting $FOLDER to $PART $END"
@@ -83,6 +87,7 @@ if [ -b $DEV ]; then
         echo -e "$RED Problem occured with either $FOLDER or $PART $END"
 	fi
 	
+	#lets enable auto mount in fstab
     echo -e "$PURPLE Adding the auto mount of $FOLDER to $PART in FSTAB $END"
 	if ! grep -q '#2TB' /etc/fstab; then
 		echo -e "$GREEN Making backup of fstab $END"
