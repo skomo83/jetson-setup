@@ -89,14 +89,16 @@ if [ -b $DEV ]; then
 	
 	#lets enable auto mount in fstab
     echo -e "$PURPLE Adding the auto mount of $FOLDER to $PART in FSTAB $END"
-	if ! grep -q '#2TB' /etc/fstab; then
+	
+	FSTABSTRING="$PART    $FOLDER    ext4    defaults    0    2" 
+
+	if ! grep -q "$FSTABSTRING" /etc/fstab; then
 		echo -e "$GREEN Making backup of fstab $END"
 		sudo cp /etc/fstab /etc/fstab.backup
 		echo -e "$GREEN Inserting 2TB drive into fstab $END"
-		
 		{
 		echo "#2TB" 
-		echo "$PART    $FOLDER    ext4    defaults    0    2" 
+		echo "$FSTABSTRING" 
  		}	| sudo tee /etc/fstab
 
 	else
