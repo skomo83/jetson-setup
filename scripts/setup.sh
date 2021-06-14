@@ -75,10 +75,10 @@ echo -e "$GREEN $DEFVALS $END"
 #run apt update and install some general programs
 echo -e "$PURPLE RUN APT UPDATE AND INSTALL EXTRA PROGRAMS $END"
 sudo apt update
-sudo apt install nano haveged curl apt-transport-https gparted
+sudo apt install nano haveged curl apt-transport-https gparted -y
 
-sudo apt dist-upgrade
-sudo apt autoremove
+sudo apt dist-upgrade -y
+sudo apt autoremove -y
 
 
 #call the nvme script here
