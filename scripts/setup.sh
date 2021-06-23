@@ -69,16 +69,13 @@ echo -e "$GREEN $DEFVALS $END"
 #    myuser ALL=(ALL) NOPASSWD:ALL
 ./sudoadd.sh 
 
+
 #install the new nvidia repo
 ./nvidia.sh
 
-#run apt update and install some general programs
-echo -e "$PURPLE RUN APT UPDATE AND INSTALL EXTRA PROGRAMS $END"
-sudo apt update
-sudo apt install nano haveged curl apt-transport-https gparted -y
 
-sudo apt dist-upgrade -y
-sudo apt autoremove -y
+#run apt update and install some general programs
+./aptinstalls.sh
 
 
 #call the nvme script here
@@ -88,6 +85,7 @@ echo -e "$GREEN ./nvme.sh -f $FOLDER -d $DEV -p $PART $END"
 
 #install external programs
 ./programs.sh
+
 
 #finished
 echo -e "$GREEN Finished Configuration $END"

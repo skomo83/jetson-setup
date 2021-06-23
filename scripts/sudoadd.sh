@@ -26,6 +26,7 @@ if [ -z $USERNAME ]; then
 	exit 
 fi
 
+echo ""
 echo -e "$PURPLE ADD $USERNAME to SUDOERS $END"
 SUDOFILE=/etc/sudoers.d/99_sudo_include_file
 

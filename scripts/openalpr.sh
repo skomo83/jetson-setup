@@ -7,6 +7,7 @@ END="\e[0m"
 #need to add a check to see if openalpr is already installed
 PACKAGE=openalpr
 
+echo ""
 echo -e "$PURPLE Checking if $PACKAGE is installed $END"
 
 dpkg -s $PACKAGE &> /dev/null

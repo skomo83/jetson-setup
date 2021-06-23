@@ -8,6 +8,7 @@ END="\e[0m"
 PACKAGE=nomachine
 ARMV=$(uname -m | grep -o -E '[0-9]+')
 
+echo ""
 echo -e "$PURPLE Checking if $PACKAGE is installed $END"
 
 dpkg -s $PACKAGE &> /dev/null  
