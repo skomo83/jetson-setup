@@ -6,14 +6,20 @@ PURPLE="\e[35m"
 LIGHTGREY="\e[37m"
 END="\e[0m"
 
+#t194 for Jetson AGX Xavier series or Jetson Xavier NX
+#t186 for Jetson TX2
+#t210 is for Jetson TX1 and Nano series
+#current jetpack is r32.6
 
 USERNAME=$USER
-#DEV=/dev/nvme0n1
-#PART=/dev/nvme0n1p1
-DEV=/dev/sda
-PART=/dev/sda1
+DEV=/dev/nvme0n1
+PART=/dev/nvme0n1p1
+#DEV=/dev/sda
+#PART=/dev/sda1
 FOLDER=/var/lib/openalpr
-JETSON=TX2
+JETSON=AGX
+DEVICE=t194
+JETPACK=r32.6
 
 HELPMSG="
  default folder is $FOLDER. Overide folder with '-f /folder/location'
@@ -66,9 +72,15 @@ fi
 if [ $JETSON = TX2 ]; then 
     DEV=/dev/sda
     PART=/dev/sda1
-elif [$JETSON = NX] || [$JETSON = AGX]; then
+    DEVICE=t186
+elif [$JETSON = NX]; then
     DEV=/dev/nvme0n1
     PART=/dev/nvme0n1p1
+    DEVICE=t194
+elif [$JETSON = AGX]; then
+    DEV=/dev/nvme0n1
+    PART=/dev/nvme0n1p1
+    DEVICE=t194
 else
     echo -e "$RED Jetson value not TX2, NX or AGX $END"
 	exit 
@@ -94,7 +106,7 @@ echo -e "$GREEN $DEFVALS $END"
 
 
 #install the new nvidia repo
-./nvidia.sh
+./nvidia.sh -d -j $JETPACK -d $DEVICE
 
 
 #run apt update and install some general programs
