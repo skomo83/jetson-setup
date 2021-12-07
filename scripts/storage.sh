@@ -1,18 +1,23 @@
 #!/bin/bash
-#
-# THIS FILE WILL BE SUPERCEEDED BY STORAGE.SH 
-#
 RED="\e[31m"
 GREEN="\e[32m"
 PURPLE="\e[35m"
 END="\e[0m"
 
 #we can uncomment these out when using the file directly but we are getting called from setup.sh with default values
+
+#AGX and NX
 #DEV=/dev/nvme0n1
 #PART=/dev/nvme0n1p1
+
+#TX2
+#DEV=/dev/sda
+#PART=/dev/sda1
+
 #FOLDER=/var/lib/openalpr
+
 echo ""
-echo -e "$PURPLE Setup NVME drive and mount point $END"
+echo -e "$PURPLE Setup storage drive and mount point $END"
 
 HELPMSG="
  Must run with -f /folder/location -d /dev/device/ -p /dev/partition/
