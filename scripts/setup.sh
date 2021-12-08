@@ -107,7 +107,7 @@ echo -e "$GREEN $DEFVALS $END"
 
 
 #install the new nvidia repo
-./nvidia.sh -d -j $JETPACK -d $DEVICE
+./nvidia.sh -j $JETPACK -d $DEVICE
 
 
 #run apt update and install some general programs
