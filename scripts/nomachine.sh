@@ -16,6 +16,7 @@ dpkg -s $PACKAGE &> /dev/null
 if [ $? -ne 0 ]
     then
         echo -e "$RED $PACKAGE is not installed $END" 
+        echo -e "$GREEN wget https://www.nomachine.com/free/arm/v$ARMV/deb -O nomachine.deb $END"
         wget "https://www.nomachine.com/free/arm/v$ARMV/deb" -O nomachine.deb
         sudo dpkg -i nomachine.deb
     else
