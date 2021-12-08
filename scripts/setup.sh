@@ -44,26 +44,6 @@ do
     esac
 done
 
-if [ -z $USERNAME ]; then 
-    echo -e "$RED Username is blank $END"
-	exit 
-fi
-
-if [ -z $FOLDER ]; then 
-    echo -e "$RED Folder is blank $END"
-	exit 
-fi
-
-if [ ! -b $DEV ]; then 
-    echo -e "$RED Device $DEV does not exist $END"
-	exit 
-fi
-
-if [ -z $PART ]; then 
-    echo -e "$RED Partition value is blank $END"
-	exit 
-fi
-
 if [ -z $JETSON ]; then 
     echo -e "$RED Jetson value is blank $END"
 	exit 
@@ -85,6 +65,27 @@ else
     echo -e "$RED Jetson value not TX2, NX or AGX $END"
 	exit 
 fi
+
+if [ -z $USERNAME ]; then 
+    echo -e "$RED Username is blank $END"
+	exit 
+fi
+
+if [ -z $FOLDER ]; then 
+    echo -e "$RED Folder is blank $END"
+	exit 
+fi
+
+if [ ! -b $DEV ]; then 
+    echo -e "$RED Device $DEV does not exist $END"
+	exit 
+fi
+
+if [ -z $PART ]; then 
+    echo -e "$RED Partition value is blank $END"
+	exit 
+fi
+
 
 
 echo ""
