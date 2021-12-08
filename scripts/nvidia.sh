@@ -23,7 +23,7 @@ HELPMSG="
 
 ((!$#)) && echo -e "$RED No arguments supplied! $END" && echo -e "$RED $HELPMSG $END" && exit
 
-while getopts u:f:d:p:h flag
+while getopts j:d:h flag
 do
     case "${flag}" in
         j) JETPACK=${OPTARG};;
