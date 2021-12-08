@@ -55,3 +55,4 @@ fi
 	echo "deb https://repo.download.nvidia.com/jetson/common $JETPACK main " 
 	echo "deb https://repo.download.nvidia.com/jetson/$DEVICE $JETPACK main " 
  }	| sudo tee $NVFILE
+ 
