@@ -25,7 +25,7 @@ HELPMSG="
 
 ((!$#)) && echo -e "$RED No arguments supplied! $END" && echo -e "$RED $HELPMSG $END" && exit
 
-while getopts u:f:d:p:h flag
+while getopts f:d:p:h flag
 do
     case "${flag}" in
         f) FOLDER=${OPTARG};;
