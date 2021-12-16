@@ -75,7 +75,7 @@ if [ -b $DEV ]; then
 		sudo mkfs.ext4 $PART
 	else
 		echo -e "$GREEN $PART already exists$END"
-		echo -e "$PURPLE run 'sudo parted -s $DEV rm 1' and re run this script$END"
+		echo -e "$PURPLE run 'sudo parted -s $DEV rm 1' to remove the partition and re run this script$END"
 	fi
 	
 	#have we created the folder ?
