@@ -10,7 +10,7 @@ END="\e[0m"
 #DEV=/dev/nvme0n1
 #PART=/dev/nvme0n1p1
 
-#TX2
+#TX2 and USB drives
 #DEV=/dev/sda
 #PART=/dev/sda1
 
