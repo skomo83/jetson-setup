@@ -12,12 +12,13 @@ END="\e[0m"
 #current jetpack is r32.6
 
 USERNAME=$USER
-DEV=/dev/nvme0n1
-PART=/dev/nvme0n1p1
-#DEV=/dev/sda
-#PART=/dev/sda1
+#DEV=/dev/nvme0n1
+#PART=/dev/nvme0n1p1
+#sda is used on NX due to USB to NVME caddy
+DEV=/dev/sda
+PART=/dev/sda1
 FOLDER=/var/lib/openalpr
-JETSON=AGX
+JETSON=NX
 DEVICE=t194
 JETPACK=r32.6
 
