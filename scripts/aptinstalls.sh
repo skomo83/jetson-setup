@@ -7,7 +7,7 @@ END="\e[0m"
 echo ""
 echo -e "$PURPLE RUN APT UPDATE AND INSTALL EXTRA PROGRAMS $END"
 sudo apt update
-sudo apt install nano haveged curl apt-transport-https gparted -y
+sudo apt install nano haveged curl apt-transport-https gparted gsmartcontrol -y
 
 sudo DEBIAN_FRONTEND=noninteractive apt dist-upgrade -y
 sudo apt autoremove -y
