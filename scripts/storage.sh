@@ -21,6 +21,7 @@ echo -e "$PURPLE Setup storage drive and mount point $END"
 
 HELPMSG="
  Must run with -f /folder/location -d /dev/device/ -p /dev/partition/
+ EG: -f /var/lib/openalpr -d /dev/sda -p /dev/sda1
 "
 
 ((!$#)) && echo -e "$RED No arguments supplied! $END" && echo -e "$RED $HELPMSG $END" && exit
