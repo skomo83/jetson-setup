@@ -9,5 +9,5 @@ chmod +x init.sh
 
 ./init.sh
 
-#once done then simply call setup to run the scripts
+#once done then simply call setup to run the scripts. usbnvme.sh to be run first if using the LINDY43095
 ./setup.sh
