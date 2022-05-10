@@ -16,4 +16,4 @@ if ! grep -q "$QUIRKSTRING" $QUIRKLOC; then
 	echo "$QUIRKSTRING"	| sudo tee $QUIRKLOC
 else
 	echo -e "$GREEN $QUIRKSTRING is already in quirk $END"
-
+fi
