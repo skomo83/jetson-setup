@@ -78,8 +78,7 @@ if [ -z $FOLDER ]; then
 fi
 
 if [ ! -b $DEV ]; then 
-    echo -e "$RED Device $DEV does not exist $END"
-	exit 
+    echo -e "$RED Device $DEV does not exist $END" 
 fi
 
 if [ -z $PART ]; then 
