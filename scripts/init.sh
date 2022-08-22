@@ -12,8 +12,11 @@ sudo systemd-resolve --flush-caches
 
 #yes its ugly manually putting in the files but it works
 
-FILES=("init.sh"  "aptinstalls.sh" "setup.sh" "sudoadd.sh" "storage.sh" "programs.sh" "nvidia.sh" "nomachine.sh" "openalpr.sh" "README.md")
+FILES=("init.sh"  "aptinstalls.sh" "setup.sh" "sudoadd.sh" "storage.sh" "programs.sh" "nvidia.sh" "nomachine.sh" "openalpr.sh")
 LOCATION="https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/"
+README="README.md"
+READMELOC="https://raw.githubusercontent.com/skomo83/jetson-setup/main/"
+
 
 for file in ${FILES[@]};
 do
@@ -22,6 +25,10 @@ do
     wget $LOCATION$file
     chmod +x $file
 done
+
+rm $README && echo -e "$RED Deleted $README $END"
+echo -e "$GREEN Downloading $README $END"
+wget $READMELOC$README
 
 exit
 
