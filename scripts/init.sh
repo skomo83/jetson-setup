@@ -12,7 +12,7 @@ sudo systemd-resolve --flush-caches
 
 #yes its ugly manually putting in the files but it works
 
-FILES=("init.sh"  "aptinstalls.sh" "setup.sh" "sudoadd.sh" "storage.sh" "programs.sh" "nvidia.sh" "nomachine.sh" "openalpr.sh")
+FILES=("init.sh"  "aptinstalls.sh" "setup.sh" "sudoadd.sh" "storage.sh" "programs.sh" "nvidia.sh" "nomachine.sh" "openalpr.sh" "readme.md")
 LOCATION="https://raw.githubusercontent.com/skomo83/jetson-setup/main/scripts/"
 
 for file in ${FILES[@]};
@@ -20,7 +20,9 @@ do
     [ -f $file ] && rm $file && echo -e "$RED Deleted $file $END"
     echo -e "$GREEN Downloading $file $END"
     wget $LOCATION$file
-    chmod +x $file
+    if [ $file == *.sh ]; then
+        chmod +x $file
+    fi
 done
 
 exit
