@@ -20,9 +20,7 @@ do
     [ -f $file ] && rm $file && echo -e "$RED Deleted $file $END"
     echo -e "$GREEN Downloading $file $END"
     wget $LOCATION$file
-    if [[ "${FILE##*.}" = "sh" ]]; then
-        chmod +x $file
-    fi
+    chmod +x $file
 done
 
 exit
