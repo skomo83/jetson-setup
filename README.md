@@ -9,6 +9,8 @@ chmod +x init.sh
 
 ./init.sh
 
-#once done then simply call setup to run the scripts. use "./setup - h" for help
+#once done then simply call setup to run the scripts. 
+#use "./setup - h" for help
+
 ./setup.sh
 
