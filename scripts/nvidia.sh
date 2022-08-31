@@ -4,6 +4,9 @@ GREEN="\e[32m"
 PURPLE="\e[35m"
 END="\e[0m"
 
+echo ""
+echo -e "$PURPLE ADD JETPACK REPO to APT $END"
+
 #sudo nano /etc/apt/sources.list.d/nvidia-l4t-apt-source.list
 #edit section below so you can update to 32.5.1 jetpack
 #t194 for Jetson AGX Xavier series or Jetson Xavier NX

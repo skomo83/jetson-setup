@@ -6,6 +6,7 @@ END="\e[0m"
 
 echo ""
 echo -e "$PURPLE ADD APTCACHE to APT $END"
+
 APTFILE=/etc/apt/apt.conf.d/00aptproxy
 #APTCACHE=192.168.179.168
 HELPMSG="
