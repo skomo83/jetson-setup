@@ -110,7 +110,8 @@ echo -e "$GREEN $DEFVALS $END"
 ./sudoadd.sh 
 
 if [ ! -z $APTCACHE ]; then 
-    ./aptcache -c $APTCACHE
+    echo -e "$GREEN ./aptcache.sh -c $APTCACHE $END"
+    ./aptcache.sh -c $APTCACHE
 else 
     echo -e "$RED APTCACHE is blank. Bypass using an APT cache $END"
 fi
