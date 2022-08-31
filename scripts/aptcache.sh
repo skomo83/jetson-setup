@@ -8,7 +8,7 @@ echo ""
 echo -e "$PURPLE ADD APTCACHE to APT $END"
 APTFILE=/etc/apt/apt.conf.d/00aptproxy
 IP=192.168.179.168
-APTSTRING="Acquire::http::Proxy "http://$IP:3142";"
+APTSTRING="Acquire::http::Proxy \"http://$IP:3142\";"
 
 if [ -f "$APTFILE" ] && grep -q "$APTSTRING" "$APTFILE" ;
 then
