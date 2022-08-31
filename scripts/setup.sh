@@ -12,6 +12,7 @@ END="\e[0m"
 #current jetpack is r32.6
 
 USERNAME=$USER
+#APTCACHE=192.168.179.168
 #DEV=/dev/nvme0n1
 #PART=/dev/nvme0n1p1
 #sda is used on NX due to USB to NVME caddy
@@ -33,7 +34,7 @@ HELPMSG="
 
 ((!$#)) && echo -e "$RED No arguments supplied. Using all defaults $END" && echo -e "$RED $HELPMSG $END"
 
-while getopts u:f:d:p:j:h flag
+while getopts u:f:d:p:j:c:h flag
 do
     case "${flag}" in
         u) USERNAME=${OPTARG};;
@@ -41,6 +42,7 @@ do
 		d) DEV=${OPTARG};;
 		p) PART=${OPTARG};;
         j) JETSON=${OPTARG};;
+        c) APTCACHE=${OPTARG};;
 		h) echo "$HELPMSG"; exit
     esac
 done
@@ -94,6 +96,7 @@ echo -e "$GREEN Starting the configuration $END"
 DEFVALS="
  Using the following values
  Username: $USERNAME
+ APTCache: $APTCACHE
  Folder: $FOLDER
  Device: $DEV
  Partition: $PART
@@ -104,6 +107,13 @@ echo -e "$GREEN $DEFVALS $END"
 #edit sudoers file with : visudo
 #    myuser ALL=(ALL) NOPASSWD:ALL
 ./sudoadd.sh 
+
+if [ ! -z $APTCACHE ]; then 
+    ./aptcache -c $APTCACHE
+else 
+    echo -e "$RED APTCACHE is blank. Bypassing Adding the cache $END"
+fi
+
 
 
 #install the new nvidia repo

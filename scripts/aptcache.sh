@@ -7,8 +7,27 @@ END="\e[0m"
 echo ""
 echo -e "$PURPLE ADD APTCACHE to APT $END"
 APTFILE=/etc/apt/apt.conf.d/00aptproxy
-IP=192.168.179.168
-APTSTRING="Acquire::http::Proxy \"http://$IP:3142\";"
+#APTCACHE=192.168.179.168
+HELPMSG="
+ Must run with IP address '-c 192.168.179.168' 
+"
+
+((!$#)) && echo -e "$RED No arguments supplied! $END" && echo -e "$RED $HELPMSG $END" && exit
+
+while getopts c:h flag
+do
+    case "${flag}" in
+        c) APTCACHE=${OPTARG};;
+		h) echo -e "$RED $HELPMSG $END"; exit
+    esac
+done
+
+if [ -z $APTCACHE ]; then 
+    echo -e "$RED APTCACHE is blank $END"
+	exit 
+fi
+
+APTSTRING="Acquire::http::Proxy \"http://$APTCACHE:3142\";"
 
 if [ -f "$APTFILE" ] && grep -q "$APTSTRING" "$APTFILE" ;
 then
