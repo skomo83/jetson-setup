@@ -26,6 +26,7 @@ JETPACK=r32.6
 HELPMSG="
  default folder is $FOLDER. Overide folder with '-f /folder/location'
  current username is $USERNAME. Overide username with '-u username' 
+ to use an APT Cache server, use '-c IP-ADDRESS'
  default device is $DEV. Overide device with '-d /dev/device/' 
  default partition is $PART. Overide partition with '-p /dev/partition/'
  default jetson is $JETSON. Override jetson type with '-j TX2'
@@ -111,7 +112,7 @@ echo -e "$GREEN $DEFVALS $END"
 if [ ! -z $APTCACHE ]; then 
     ./aptcache -c $APTCACHE
 else 
-    echo -e "$RED APTCACHE is blank. Bypassing Adding the cache $END"
+    echo -e "$RED APTCACHE is blank. Bypass using an APT cache $END"
 fi
 
 
