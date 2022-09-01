@@ -26,7 +26,7 @@ else
 fi
 
 echo ""
-echo -e "$PURPLE REMOVE SCRIPT FILE from APT $END"
+echo -e "$PURPLE REMOVE SCRIPT FILE for APT $END"
 
 if [ -f "$SCRIPTFILE" ];
 then
