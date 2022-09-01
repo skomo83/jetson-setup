@@ -11,7 +11,7 @@ APTFILE=/etc/apt/apt.conf.d/00aptproxy
 
 if [ -f "$APTFILE" ];
 then
-    echo -e "$GREEN $APTFILE exists. Removing $APTFILE $END"
+    echo -e "$GREEN The file $APTFILE exists $END"
     sudo bash -c "rm $APTFILE"
     if [ $? -eq 0 ]; 
     then  
