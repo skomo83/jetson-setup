@@ -31,6 +31,8 @@ if [ -z $APTCACHE ]; then
 	exit 
 fi
 
+#sed "3s/.*/IP=$APTCACHE/" $SCRIPTFILE
+
 if [ ! -e $SCRIPTFP ]; then
 	echo -e "$GREEN Copying $SCRIPTFILE to $SCRIPTPATH $END"
 	sudo cp $SCRIPTFILE $SCRIPTPATH
@@ -41,6 +43,8 @@ if [ ! -e $SCRIPTFP ]; then
         echo -e "$RED $SCRIPTFILE FAILED IN COPYING TO $SCRIPTPATH $END"    
     fi
 fi
+
+sed "3s/.*/IP=$APTCACHE/" $SCRIPTFP
 
 APTSTRING="Acquire::http::Proxy-Auto-Detect \"$SCRIPTFP\";"
 #APTSTRING="Acquire::http::Proxy \"http://$APTCACHE:3142\";"
