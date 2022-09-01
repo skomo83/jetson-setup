@@ -7,9 +7,9 @@ END="\e[0m"
 echo ""
 echo -e "$PURPLE ADD APTPROXY to APT $END"
 
-SCRIPTFILE=proxy-apt-detect.sh
 SCRIPTPATH=/usr/local/bin/
-SCRIPTFP=$SCRIPTPATH$SCRIPTFILE
+SCRIPTFILE=proxy-apt-detect.sh
+SCRIPTLOC=$SCRIPTPATH$SCRIPTFILE
 APTFILE=/etc/apt/apt.conf.d/00aptproxy
 #APTCACHE=192.168.179.168
 HELPMSG="
@@ -44,9 +44,9 @@ if [ ! -e $SCRIPTFP ]; then
     fi
 fi
 
-sed "3s/.*/IP=$APTCACHE/" $SCRIPTFP
+sed "3s/.*/IP=$APTCACHE/" $SCRIPTLOC
 
-APTSTRING="Acquire::http::Proxy-Auto-Detect \"$SCRIPTFP\";"
+APTSTRING="Acquire::http::Proxy-Auto-Detect \"$SCRIPTLOC\";"
 #APTSTRING="Acquire::http::Proxy \"http://$APTCACHE:3142\";"
 
 if [ -f "$APTFILE" ] && grep -q "$APTSTRING" "$APTFILE" ;
