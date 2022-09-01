@@ -25,7 +25,9 @@ else
     
 fi
 
+echo ""
 echo -e "$PURPLE REMOVE SCRIPT FILE from APT $END"
+
 if [ -f "$SCRIPTFILE" ];
 then
     echo -e "$GREEN The file $SCRIPTFILE exists $END"
@@ -40,3 +42,4 @@ else
     echo -e "$GREEN $SCRIPTFILE does not exist $END"
     
 fi
+echo ""
