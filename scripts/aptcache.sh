@@ -42,7 +42,7 @@ if [ ! -e $SCRIPTFP ]; then
     fi
 fi
 
-APTSTRING="Acquire::http::Proxy-Auto-Detect \"$SCRIPTFP -i $APTCACHE\";"
+APTSTRING="Acquire::http::Proxy-Auto-Detect \"$SCRIPTFP\";"
 #APTSTRING="Acquire::http::Proxy \"http://$APTCACHE:3142\";"
 
 if [ -f "$APTFILE" ] && grep -q "$APTSTRING" "$APTFILE" ;
