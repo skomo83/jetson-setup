@@ -7,6 +7,9 @@ END="\e[0m"
 echo ""
 echo -e "$PURPLE ADD APTPROXY to APT $END"
 
+SCRIPTFILE=proxy-apt-detect.sh
+SCRIPTPATH=/usr/local/bin/
+SCRIPTFP=$SCRIPTPATH$SCRIPTFILE
 APTFILE=/etc/apt/apt.conf.d/00aptproxy
 #APTCACHE=192.168.179.168
 HELPMSG="
@@ -28,7 +31,19 @@ if [ -z $APTCACHE ]; then
 	exit 
 fi
 
-APTSTRING="Acquire::http::Proxy \"http://$APTCACHE:3142\";"
+if [ ! -e $SCRIPTFP ]; then
+	echo -e "$GREEN Copying $SCRIPTFILE to $SCRIPTPATH $END"
+	sudo cp $SCRIPTFILE $SCRIPTPATH
+    if [ $? -eq 0 ]; 
+    then  
+        echo -e "$GREEN $SCRIPTFILE copied successfully to $SCRIPTPATH $END"
+    else
+        echo -e "$RED $SCRIPTFILE FAILED IN COPYING TO $SCRIPTPATH $END"    
+    fi
+fi
+
+APTSTRING="Acquire::http::Proxy-Auto-Detect \"/usr/local/bin/apt-proxy-detect.sh -i $APTCACHE\";"
+#APTSTRING="Acquire::http::Proxy \"http://$APTCACHE:3142\";"
 
 if [ -f "$APTFILE" ] && grep -q "$APTSTRING" "$APTFILE" ;
 then
