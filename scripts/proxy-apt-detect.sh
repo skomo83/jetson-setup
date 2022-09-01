@@ -1,6 +1,6 @@
 #!/bin/bash
 
-IP=192.168.179.168
+IP=IPADDRESS
 PORT=3142
 
 if nc -zw1 $IP $PORT; then
