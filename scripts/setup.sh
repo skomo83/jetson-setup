@@ -137,6 +137,9 @@ echo -e "$GREEN ./storage.sh -f $FOLDER -d $DEV -p $PART $END"
 ./programs.sh
 
 
+#clean up apt-proxy
+./remove-aptcache.sh
+
 #finished
 echo -e "$GREEN Finished Configuration $END"
 echo -e "$LIGHTGREY Please perform a restart ! $END"
