@@ -45,7 +45,7 @@ fi
 echo ""
 echo -e "$PURPLE Modify script to use correct IP $END"
 
-sed "3s/.*/IP=$APTCACHE/" $SCRIPTLOC
+sudo sed -i "3s/.*/IP=$APTCACHE/" $SCRIPTLOC
 
 echo ""
 echo ""
