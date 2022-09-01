@@ -53,8 +53,9 @@ if [ -f "$APTFILE" ] && grep -q "$APTSTRING" "$APTFILE" ;
 then
     echo -e "$GREEN $APTSTRING is already in $APTFILE $END"
 else
-    sudo bash -c "echo '$APTSTRING' >> '$APTFILE'"
-    
+    echo "$APTSTRING" | sudo tee $APTFILE
+    #sudo bash -c "echo '$APTSTRING' >> '$APTFILE'"
+
     if [ $? -eq 0 ]; 
     then  
         echo -e "$GREEN $APTSTRING added successfully to $APTFILE $END"
