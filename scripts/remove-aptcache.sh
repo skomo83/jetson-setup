@@ -37,6 +37,6 @@ then
         echo -e "$RED Removing $SCRIPTFILE FAILED $END"    
     fi
 else
-    echo -e "$GREEN $SCRIPTFILE does not exist $APTFILE $END"
+    echo -e "$GREEN $SCRIPTFILE does not exist $END"
     
 fi
