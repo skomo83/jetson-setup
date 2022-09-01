@@ -33,7 +33,7 @@ fi
 
 #sed "3s/.*/IP=$APTCACHE/" $SCRIPTFILE
 
-if [ ! -e $SCRIPTFP ]; then
+if [ ! -e $SCRIPTLOC ]; then
 	echo -e "$GREEN Copying $SCRIPTFILE to $SCRIPTPATH $END"
 	sudo cp $SCRIPTFILE $SCRIPTPATH
     if [ $? -eq 0 ]; 
