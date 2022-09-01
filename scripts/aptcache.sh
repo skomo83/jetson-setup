@@ -56,6 +56,7 @@ if [ -f "$APTFILE" ] && grep -q "$APTSTRING" "$APTFILE" ;
 then
     echo -e "$GREEN $APTSTRING is already in $APTFILE $END"
 else
+    echo -e "$GREEN Adding line to file $END"
     echo "$APTSTRING" | sudo tee $APTFILE
 
     if [ $? -eq 0 ]; 
