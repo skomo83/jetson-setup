@@ -11,7 +11,7 @@ SCRIPTPATH=/usr/local/bin/
 SCRIPTFILE=proxy-apt-detect.sh
 SCRIPTLOC=$SCRIPTPATH$SCRIPTFILE
 APTFILE=/etc/apt/apt.conf.d/00aptproxy
-#APTCACHE=192.168.179.168
+#APTCACHE=IPADDRESS
 HELPMSG="
  Must run with IP address '-c 192.168.179.168' 
 "
@@ -31,8 +31,6 @@ if [ -z $APTCACHE ]; then
 	exit 
 fi
 
-#sed "3s/.*/IP=$APTCACHE/" $SCRIPTFILE
-
 if [ ! -e $SCRIPTLOC ]; then
 	echo -e "$GREEN Copying $SCRIPTFILE to $SCRIPTPATH $END"
 	sudo cp $SCRIPTFILE $SCRIPTPATH
@@ -44,17 +42,21 @@ if [ ! -e $SCRIPTLOC ]; then
     fi
 fi
 
+echo ""
+echo -e "$PURPLE Modify script to use correct IP $END"
+
 sed "3s/.*/IP=$APTCACHE/" $SCRIPTLOC
 
+echo ""
+echo ""
+
 APTSTRING="Acquire::http::Proxy-Auto-Detect \"$SCRIPTLOC\";"
-#APTSTRING="Acquire::http::Proxy \"http://$APTCACHE:3142\";"
 
 if [ -f "$APTFILE" ] && grep -q "$APTSTRING" "$APTFILE" ;
 then
     echo -e "$GREEN $APTSTRING is already in $APTFILE $END"
 else
     echo "$APTSTRING" | sudo tee $APTFILE
-    #sudo bash -c "echo '$APTSTRING' >> '$APTFILE'"
 
     if [ $? -eq 0 ]; 
     then  
