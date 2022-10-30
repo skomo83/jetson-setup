@@ -109,7 +109,7 @@ if [ -b $DEV ]; then
 		{
 		echo "#2TB" 
 		echo "$FSTABSTRING" 
- 		}	| sudo tee /etc/fstab
+ 		}	| sudo tee -a /etc/fstab
 
 	else
 		echo -e "$GREEN $FSTABSTRING is already in fstab $END"
